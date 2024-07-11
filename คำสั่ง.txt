@@ -1,3 +1,7 @@
 docker-compose build            ** build docker img            
 docker-compose up               ** run docker container
 docker save -o myapp.tar myapp  ** export docker img
+
+** ลง ping ใน ubuntu docker
+apt-get update -y
+apt-get install -y iputils-ping
