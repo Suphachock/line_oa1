@@ -15,7 +15,7 @@ handler = WebhookHandler('fa78d0cc7c3225fcd3cbfb9003b45f88')
 # -------- เชื่อมต่อฐานข้อมูล phpmyadmin --------
 def connect_db():
     return pymysql.connect(
-        host='localhost',
+        host='127.0.0.1',
         user='root',
         password='',
         db='employee',
@@ -26,6 +26,10 @@ def connect_db():
 # ---------------- หน้า Index ----------------
 @app.route("/")
 def index():
+    connection = connect_db()
+    if isinstance(connection, tuple) and connection[1] == 500:
+        # แสดงข้อผิดพลาดหากการเชื่อมต่อฐานข้อมูลล้มเหลว
+        return connection
     return "Hello, this is the index page. The server is running."
 
 # ------------------------------------------
