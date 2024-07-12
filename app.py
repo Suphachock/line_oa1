@@ -15,7 +15,8 @@ handler = WebhookHandler('fa78d0cc7c3225fcd3cbfb9003b45f88')
 # -------- เชื่อมต่อฐานข้อมูล phpmyadmin --------
 def connect_db():
     return pymysql.connect(
-        host='127.0.0.1',
+        # host='127.0.0.1',
+        host="host.docker.internal",
         user='root',
         password='',
         db='employee',
@@ -27,10 +28,20 @@ def connect_db():
 @app.route("/")
 def index():
     connection = connect_db()
-    if isinstance(connection, tuple) and connection[1] == 500:
-        # แสดงข้อผิดพลาดหากการเชื่อมต่อฐานข้อมูลล้มเหลว
-        return connection
-    return "Hello, this is the index page. The server is running."
+    try:
+        with connection.cursor() as cursor:
+            sql = "SELECT * FROM emp_data LIMIT 10"  # ตัวอย่างการดึงข้อมูลพนักงาน 10 คน
+            cursor.execute(sql)
+            result = cursor.fetchall()
+            employees = "<ul>"
+            for emp in result:
+                employees += f"<li>{emp['emp_name']} (ID: {emp['emp_id']})</li>"
+            employees += "</ul>"
+        return f"<h1>Employee List</h1>{employees}"
+    except Exception as e:
+        return f"Error occurred: {e}", 500
+    finally:
+        connection.close()
 
 # ------------------------------------------
 @app.route("/callback", methods=['POST'])
