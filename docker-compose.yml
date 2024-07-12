@@ -3,6 +3,7 @@ version: "3.8"
 services: 
   web:
     build: .
-    image: myapp:1.0
+    image: line-oa
+    network_mode: "host"
     ports:
       - "5000:5000"
