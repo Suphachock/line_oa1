@@ -15,8 +15,8 @@ handler = WebhookHandler('fa78d0cc7c3225fcd3cbfb9003b45f88')
 # -------- เชื่อมต่อฐานข้อมูล phpmyadmin --------
 def connect_db():
     return pymysql.connect(
-        # host='127.0.0.1',
-        host="host.docker.internal",
+        host='127.0.0.1',
+        # host="host.docker.internal",
         user='root',
         password='',
         db='employee',
