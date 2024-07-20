@@ -21,7 +21,8 @@ def connect_db():
         password='',
         db='employee',
         charset='utf8mb4',
-        cursorclass=pymysql.cursors.DictCursor
+        cursorclass=pymysql.cursors.DictCursor,
+        connect_timeout=3
     )
 
 # ---------------- หน้า Index ----------------

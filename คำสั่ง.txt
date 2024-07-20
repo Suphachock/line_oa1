@@ -5,6 +5,6 @@ docker save -o myapp.tar myapp  ** export docker img
 ** ลง ping ใน ubuntu docker
 apt-get update -y
 apt-get install -y iputils-ping
-
+apt install net-tools
 
 https://medium.com/readmoreth/docker-connect-database-timeout-b23f781dcff7
