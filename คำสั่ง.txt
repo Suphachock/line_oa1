@@ -8,3 +8,13 @@ apt-get install -y iputils-ping
 apt install net-tools
 
 https://medium.com/readmoreth/docker-connect-database-timeout-b23f781dcff7
+
+{
+  "builder": {
+    "gc": {
+      "defaultKeepStorage": "20GB",
+      "enabled": true
+    }
+  },
+  "experimental": false
+}
